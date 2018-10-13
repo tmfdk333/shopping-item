@@ -10,7 +10,11 @@ class ItemsController < ApplicationController
     @item = @category.items.find(params[:id])
     @item.destroy
     @item = @category.items.first
-    redirect_to edit_category_item_path(@category, @item)
+    if @item != nil
+      redirect_to edit_category_item_path(@category, @item)
+    else
+      redirect_to category_path(@category)
+    end
   end
 
   def edit

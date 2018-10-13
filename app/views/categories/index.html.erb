@@ -41,7 +41,7 @@
         <div class="container">
           <ul class="header-links pull-left">
             <li><a href="#"><i class="fas fa-envelope"></i>tmfdk333@gmail.com</a></li>
-            <li><a href="#"><i class="fas fa-map-marker-alt"></i>Korea</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i>South Korea</a></li>
           </ul>
         </div>
       </div>
@@ -71,13 +71,46 @@
                 <%= link_to category.name, category_path(category) %>
               </li>
             <% end %>
+          </ul>
+        </div>
+
+        <div id="responsive-nav">
+          <ul class="main-nav nav navbar-nav edit-category">
             <li><%= link_to 'New', new_category_path %></li>
+            <li><%= link_to 'Edit', new_category_path %></li>
           </ul>
         </div>
       </div>
     </nav>
 
     Categories Index
-
+    <footer>
+      <!-- bottom footer -->
+      <div id="bottom-footer" class="section">
+        <div class="container">
+          <!-- row -->
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <ul class="footer-payments">
+                <li><a href="#"><i class="fab fa-cc-visa"></i></a></li>
+                <li><a href="#"><i class="fas fa-credit-card"></i></a></li>
+                <li><a href="#"><i class="fab fa-cc-paypal"></i></a></li>
+                <li><a href="#"><i class="fab fa-cc-mastercard"></i></a></li>
+                <li><a href="#"><i class="fab fa-cc-discover"></i></a></li>
+                <li><a href="#"><i class="fab fa-cc-amex"></i></a></li>
+              </ul>
+              <span class="copyright">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;2018 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </span>
+            </div>
+          </div>
+          <!-- /row -->
+        </div>
+        <!-- /container -->
+      </div>
+      <!-- /bottom footer -->
+    </footer>
   </body>
 </html>

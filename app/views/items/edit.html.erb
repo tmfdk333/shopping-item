@@ -1,5 +1,5 @@
 <html>
-<head>
+  <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,102 +34,104 @@
   <![endif]-->
 </head>
 
-<body>
-<header>
-  <div id="top-header">
-    <div class="container">
-      <ul class="header-links pull-left">
-        <li><a href="#"><i class="fas fa-envelope"></i>tmfdk333@gmail.com</a></li>
-        <li><a href="#"><i class="fas fa-map-marker-alt"></i>Korea</a></li>
-      </ul>
-    </div>
-  </div>
+  <body>
 
-  <div id="header">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="header-logo">
-            <%= link_to categories_path do %>
-              <img src="<%= asset_path 'logo.png' %>">
-              <!-- http://wantknow.tistory.com/54 -->
-            <% end %>
+    <header>
+      <div id="top-header">
+        <div class="container">
+          <ul class="header-links pull-left">
+            <li><a href="#"><i class="fas fa-envelope"></i>tmfdk333@gmail.com</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i>South Korea</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="header">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="header-logo">
+                <%= link_to categories_path do %>
+                  <img src="<%= asset_path 'logo.png' %>">
+                  <!-- http://wantknow.tistory.com/54 -->
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</header>
+    </header>
 
-<nav id="navigation">
-  <div class="container">
-    <div id="responsive-nav">
-      <ul class="main-nav nav navbar-nav">
-        <% @categories.each do |category| %>
-          <li>
-            <!-- https://stackoverflow.com/questions/17795053/if-else-statements-in-html-erb-in-views -->
-            <% if @category.name == category.name %>
-              <%= link_to category.name, category_path(category), class: "active" %>
-            <% else %>
-              <%= link_to category.name, category_path(category) %>
+    <nav id="navigation">
+      <div class="container">
+        <div id="responsive-nav">
+          <ul class="main-nav nav navbar-nav">
+            <% @categories.each do |category| %>
+              <li>
+                <!-- https://stackoverflow.com/questions/17795053/if-else-statements-in-html-erb-in-views -->
+                <% if @category.name == category.name %>
+                  <%= link_to category.name, category_path(category), class: "active" %>
+                <% else %>
+                  <%= link_to category.name, category_path(category) %>
+                <% end %>
+              </li>
             <% end %>
-          </li>
-        <% end %>
-        <li><%= link_to 'New', new_category_path %></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+          </ul>
+        </div>
 
-<div class="section">
-  <div class="container">
-    <div class="row">
+        <div id="responsive-nav">
+          <ul class="main-nav nav navbar-nav edit-category">
+            <li><%= link_to 'New', new_category_path %></li>
+            <li><%= link_to 'Edit', edit_category_path %></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-      <!-- 구매할것&구매한것 -->
-      <div class="col-md-12">
-        <div class="section-title">
-          <h3 class="title"><%= @category.name %></h3>
-          <div class="section-nav">
-            <ul class="section-tab-nav tab-nav">
+    <!-- BREADCRUMB -->
+    <div id="breadcrumb" class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="breadcrumb-tree">
               <li>
                 <%= link_to category_path(@category) do %>
                   All
                 <% end %>
               </li>
-              <li><a data-toggle="tab" href="#tab1">True</a></li>
-              <li><a data-toggle="tab" href="#tab1">False</a></li>
-              <li class="active">
-                <%= link_to edit_category_item_path(@category, @item) do %>
-                  Edit
-                <% end %>
-              </li>
+              <li><a href="#">True</a></li>
+              <li><a href="#">False</a></li>
+              <% if @item != nil %>
+                <li>
+                  <%= link_to edit_category_item_path(@category, @item), class: "active" do %>
+                    Edit
+                  <% end %>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
       </div>
-      <!-- /구매할것&구매한것 -->
+    </div>
 
-      <!-- product -->
-      <div class="col-md-12">
-        <% @items.each do |item| %>
-          <div class="col-md-6 col-md-4">
-            <div class="product">
-              <% if item.check != false %>
-                <div class="product-img">
-              <% else %>
-                <div class="product-img get-check">
-              <% end %>
-              <%= link_to item.address, target: :_blank do %>
-                <img src="<%= item.image %>" alt="">
-              <% end %>
-              <div class="product-label">
-                <% if item.check %>
-                  <span class="sale"><%= item.created_at.strftime("%y%m%d") %></span>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+
+          <!-- product -->
+          <div class="col-md-12">
+          <% @items.each do |item| %>
+            <div class="col-md-6 col-md-4">
+              <div class="product">
+                <% if item.check != false %>
+                  <div class="product-img">
                 <% else %>
-                  <span class="sale sale-check"><%= item.created_at.strftime("%y%m%d") %></span>
+                  <div class="product-img get-check">
                 <% end %>
-              </div>
-              <div class="product-label">
+                <%= link_to item.address, target: :_blank do %>
+                  <img src="<%= item.image %>" alt="">
+                <% end %>
+                  <div class="product-label">
                     <span class="new">
                       <%= link_to [item.category, item], method: :delete, data: { confirm: 'Are you sure?' } do %>
                         <% if item.check %>
@@ -139,36 +141,32 @@
                         <% end %>
                       <% end %>
                     </span>
-              </div>
-              </div>
-              <!--                  <div class="product-body">-->
-              <!--                    <p class="product-category"><%# @category.name %></p>-->
-              <!--                    <h3 class="product-name"><a href="#">product name goes here</a></h3>-->
-              <!--                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>-->
-              <!--                    <div class="product-rating">-->
-              <!--                      <i class="fa fa-star"></i>-->
-              <!--                      <i class="fa fa-star"></i>-->
-              <!--                      <i class="fa fa-star"></i>-->
-              <!--                      <i class="fa fa-star"></i>-->
-              <!--                      <i class="fa fa-star"></i>-->
-              <!--                    </div>-->
-              <!--                    <div class="product-btns">-->
-              <!--                      <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>-->
-              <!--                      <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>-->
-              <!--                      <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>-->
-              <!--                    </div>-->
-              <!--                  </div>-->
-              <% if item.check != false %>
-                <div class="add-to-cart">
-                  <%= button_to (item.check ? "Turn False" : "Turn True"), update_check_category_item_path(@category, item), class: "add-to-cart-btn", method: :patch %>
+                  </div>
                 </div>
-              <% else %>
-                <div class="add-to-cart purchase">
-                  <%= button_to (item.check ? "Turn False" : "Turn True"), update_check_category_item_path(@category, item), class: "add-to-cart-btn btn-purchase", method: :patch %>
-                </div>
-              <% end %>
+                        <!--                  <div class="product-body">-->
+                        <!--                    <p class="product-category"><%# @category.name %></p>-->
+                        <!--                    <h3 class="product-name"><a href="#">product name goes here</a></h3>-->
+                        <!--                    <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>-->
+                        <!--                    <div class="product-rating">-->
+                        <!--                      <i class="fa fa-star"></i>-->
+                        <!--                      <i class="fa fa-star"></i>-->
+                        <!--                      <i class="fa fa-star"></i>-->
+                        <!--                      <i class="fa fa-star"></i>-->
+                        <!--                      <i class="fa fa-star"></i>-->
+                        <!--                    </div>-->
+                        <!--                    <div class="product-btns">-->
+                        <!--                      <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>-->
+                        <!--                      <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>-->
+                        <!--                      <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>-->
+                        <!--                    </div>-->
+                        <!--                  </div>-->
+              </div>
+
+              <div class="product-body">
+                <div class="product-category"><%= item.created_at.strftime("%Y.%m.%d") %></div>
               </div>
             </div>
+
         <% end %>
         </div>
         <!-- /product -->
@@ -256,5 +254,5 @@
     </div>
     <!-- /bottom footer -->
   </footer>
-</body>
+  </body>
 </html>
